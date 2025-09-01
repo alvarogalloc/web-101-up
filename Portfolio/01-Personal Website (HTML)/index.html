@@ -1,12 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Website - HTML</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Álvaro Gallo Cruz — Personal Website</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Álvaro Gallo Cruz</h1>
+      <p class="muted">
+        CS undergrad & Software Developer at Crabi Seguros • C++ & graphics
+        programming
+      </p>
+      <nav>
+        <a href="#contact">Contact</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#interests">Interests</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="Introduction">
+        <h2>Introduction</h2>
+        <p>
+          Hey! I'm Álvaro Gallo, a computer science student at Universidad
+          Panamericana, with interest in graphics programming. I do some
+          projects and school assignments and publish them in my Github page. I
+          like to read, write and play the piano in my free time. My favorite
+          quote is:
+        </p>
+        <blockquote cite="">
+          Until the day God will deign to reveal the future to man, all human
+          wisdom is contained in these two words, 'Wait and Hope'
+          <br />
+          - The Count of Monte-Cristo, Alexandre Dumas
+        </blockquote>
+      </section>
+      <section id="background">
+        <h2>Background</h2>
+        <p>
+          I've been programming since I was 15, starting with C++ and simple web
+          development. I later graphics programming, which is what I enjoy the
+          most. I've worked with C++ for 4 years now, and I enjoy learning new
+          things about the language and its ecosystem. I'm currently learning
+          more about competitive programming and graphics programming in my free
+          time.
+          <br />
+          My goal is to become an investigator in the graphics programming
+          field, or to put my own company related to it. I'm currently looking
+          for internships or job opportunities to build some experience.
+        </p>
+        <div class="subsection" id="schools">
+          <h3>Schools</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <img
+                    src="images/altamira-logo.png"
+                    alt="Colegio Altamira logo"
+                    width="60px"
+                  />
+                </td>
+                <td><strong>Colegio Altamira</strong> <em>(2012-2024)</em></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <img
+                    src="images/up-logo.png"
+                    alt="Universidad Panamericana logo"
+                    width="60px"
+                  />
+                </td>
+                <td>
+                  <strong>Universidad Panamericana</strong>
+                  <em>(2024-now)</em>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subsection" id="skills">
+          <ol>
+            <li>
+              <strong>C++ (80%):</strong>
+              <p>
+                Modern standards, project structure, best practices (linters, memory safety, etc), open source contribution, external library
+                usage (SFML, Raylib, ImGui, SDL, EnTT).
+              </p>
+            </li>
+
+            <li>
+              <strong>Server configuration and system technologies (70%):</strong>
+              <p>
+                Linux, ssh, Docker, Bash scripting, Nginx, Caddy reverse proxy, Apache, etc.
+              </p>
+            </li>
+
+            <li>
+              <strong>DevOps (60%):</strong>
+              <p>
+                Git, Github, Buildsystems, Makefiles, CI with github actions.
+              </p>
+            </li>
+            <li>
+              <strong>Web Technologies (50%):</strong>
+              <p>
+                HTML/CSS/JS, React with Redux, Backend development with restapi
+                and template (expressjs, flask with jinja and fastapi), SQL
+                databases (MySQL, Postgres).
+              </p>
+            </li>
+            <li>
+              <strong>AI Usage (30%):</strong>
+              <p>
+                Code completion using github copilot. Text generation using chat gpt, gemini and claude.
+              </p>
+            </li>
+
+          </ol>
+        </div>
+      </section>
+      <section id="hobbies">
+        <h2>Hobbies</h2>
+        
+      </section>
+
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          Email:
+          <a href="mailto:galloalvaro5@gmail.com"
+            >galloalvaro5 at gmail dotcom</a
+          >
+        </p>
+        <p>
+          Other:
+          <a href="https://github.com/alvarogalloc">GitHub</a>
+          <a href="https://www.linkedin.com/in/alvarogalloc">LinkedIn</a>
+        </p>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <p>
+          <strong>Tower defense game</strong>
+          <a href="github.com/alvarogalloc/tower-defense">repo</a>
+          - A simple tower defense game based in space. (work in progress)
+        </p>
+        <p>
+          <strong>Parabolic shot simulator</strong>
+          <a href="github.com/alvarogalloc/spring-shot">repo</a>
+          - Simulator for parabolic motion in lua, used in Open Doors 2023
+        </p>
+
+        <p>
+          <strong>Connect four game</strong>
+          <a href="github.com/alvarogalloc/connect-four">repo</a>
+          - A simple connect four game made in C++20 and sfml using an
+          ecs(2024).
+        </p>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <p>
+          Software developer with focus on modern C++ and graphics. I enjoy
+          building clean APIs and tools that last.
+        </p>
+      </section>
+
+      <section id="interests">
+        <h2>Interests</h2>
+        <ul>
+          <li>
+            I like writing personal essays and documentation on technical and
+            philosophy topics. I've made some writing on:
+            <ul>
+              <li>
+                <a href="#">How to use c++ modules in small projects</a>
+                <span class="muted">(2025)</span>
+              </li>
+              <li>
+                <a href="#">2D raycasting a maze with raylib</a>
+                <span class="muted">(2024)</span>
+              </li>
+              <li>
+                <a href="#">How does the human convinces himself?</a>
+                <span class="muted">(2025)</span>
+              </li>
+              <li>
+                <a href="#"
+                  >Is it important for others to know what is happening in your
+                  life?</a
+                >
+                <span class="muted">(2024)</span>
+              </li>
+            </ul>
+          </li>
+          <li>
+            I like reading classics, some of my favourite books are:
+            <ul>
+              <li>
+                The count of Monte-Cristo<span class="muted"
+                  >- Alexandre Dumas</span
+                >
+              </li>
+              <li>
+                White nights<span class="muted">- Fyodor Dostoevski</span>
+              </li>
+              <li>
+                The man who was Thursday<span class="muted"
+                  >- G.K. Chesterton)</span
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            I play the piano, I've been learning since I was 13 and I still play
+            and take lessons in my free time. I specifically enjoy playing and
+            listening to classical music
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>© <span id="year"></span> Álvaro Gallo Cruz</footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
