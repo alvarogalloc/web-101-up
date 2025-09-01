@@ -1,7 +1,7 @@
 :root {
   --font-body: Georgia, "Times New Roman", serif;
   --font-mono: monospace;
-  --max-width: 70ch;
+  --max-width: 70%;
 
   --bg: #f4ecd8;
   /* sepia vintage tone */
