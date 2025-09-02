@@ -104,7 +104,24 @@ a {
   text-decoration: underline;
 }
 
-.subsection {
-  /* tabulation */
+
+section > section
+{
+  /* tabulation for subsections */
   margin-left: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  text-align: center;
+}
+
+#books-movies-shows > table {
+  width: 100%;
 }
