@@ -16,15 +16,15 @@ White: #ffffff*/
   max-width: 1440px;
 }
 .bg {
-  position: fixed;   /* stays in place even when scrolling */
-  inset: 0;          /* stretch to cover full viewport */
-  z-index: -1;       /* push behind content */
+  position: fixed; /* stays in place even when scrolling */
+  inset: 0; /* stretch to cover full viewport */
+  z-index: -1; /* push behind content */
   pointer-events: none; /* make sure clicks go through */
 }
 
 .bg img {
   position: absolute;
-  max-width: 100%;   /* responsive sizing */
+  max-width: 100%; /* responsive sizing */
   height: auto;
 }
 
@@ -37,7 +37,6 @@ White: #ffffff*/
   bottom: 0;
   right: 0;
 }
-
 
 body {
   font-family: "League Spartan", sans-serif;
@@ -56,10 +55,15 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
-.description {
-  line-height: 1.5;
-  color: var(--dark-grayish-magenta);
+p {
   font-size: 15pt;
+
+  line-height: 1.5;
+}
+
+.description,
+p {
+  color: var(--dark-grayish-magenta);
 }
 
 .client-card {
@@ -80,7 +84,7 @@ h1 {
 .rating-card {
   width: 70%;
   background-color: var(--light-grayish-magenta);
-  padding:  1rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   text-align: center;
   margin-top: 1rem;
