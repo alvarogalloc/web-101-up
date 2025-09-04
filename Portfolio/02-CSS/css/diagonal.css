@@ -1,3 +1,26 @@
 body {
-    margin: 0;
+  margin: 0;
 }
+div {
+  width: 200px;
+  height: 200px;
+}
+
+.box1 {
+  background-color: #ff5733; /* Red */
+  border: 10px solid black;
+  padding: 20px;
+
+}
+.box2 {
+  background-color: #33ff57; /* Green */
+  border: 20px solid black;
+  margin-left: 260px;
+}
+.box3 {
+  background-color: #3357ff; /* Blue */
+  border: 10px solid black;
+  margin-left: 500px;
+
+}
+

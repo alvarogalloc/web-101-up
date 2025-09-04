@@ -1,3 +1,26 @@
 body {
     margin: 0;
+    background: #fff;
+}
+
+.flag {
+    display: flex;
+    width: 600px;
+    height: 400px;
+    margin: 40px auto;
+    border: 2px solid #222;
+}
+
+.stripe {
+    flex: 1;
+    height: 100%;
+}
+.blue {
+    background: #002B7F;
+}
+.yellow {
+    background: #FCD116;
+}
+.red {
+    background: #CE1126;
 }

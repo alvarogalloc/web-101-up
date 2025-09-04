@@ -1,0 +1,39 @@
+table {
+  border-collapse: collapse;
+  background: #fff;
+}
+td {
+  border: 10px solid #000;
+}
+.w-small {
+  width: 80px;
+}
+.w-mid {
+  width: 160px;
+}
+.w-large {
+  width: 220px;
+}
+
+.h-thin {
+  height: 120px;
+}
+.h-mid {
+  height: 160px;
+}
+.h-tall {
+  height: 220px;
+}
+
+.red {
+  background: #e24a0c;
+}
+.blue {
+  background: #1f58b8;
+}
+.yellow {
+  background: #f0d34b;
+}
+.white {
+  background: #ffffff;
+}

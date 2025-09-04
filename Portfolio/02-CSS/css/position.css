@@ -1,3 +1,24 @@
 body {
     margin: 0;
 }
+
+.box {
+
+  width: 200px;
+  height: 200px;
+
+}
+.yellow {
+    margin-left: 400px;
+    background: #FCD116;
+}
+.blue {
+    background: #002B7F;
+    color: #fff;
+    margin-left: 200px;
+
+}
+.red {
+    background: #CE1126;
+    color: #fff;
+}
