@@ -1,0 +1,17 @@
+{
+  "name": "07-basicnode",
+  "version": "1.0.0",
+  "description": "Exercises for basic node js scripting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alvaro Gallo",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "star-wars-quotes": "^1.0.2",
+    "superheroes": "^4.0.0",
+    "supervillains": "^4.0.0"
+  }
+}
