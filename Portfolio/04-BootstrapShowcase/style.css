@@ -1,0 +1,88 @@
+:root {
+  --primary: #d8a061;
+  --bg: #663a31;
+  --alt: #edc19a;
+  /* darker brown for text in alt bg*/
+  --text: #4b2e26;
+}
+body {
+  background-color: var(--bg);
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.nav-logo:hover {
+  opacity: 0.8;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.bg-alt {
+  background-color: var(--alt);
+}
+
+.navbar,
+main {
+  background-color: var(--primary);
+}
+
+/* Accordion */
+.faq-title {
+  color: var(--alt);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.faq-accordion .accordion-item {
+  background-color: var(--bg);
+  border: 1px solid var(--primary);
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.faq-accordion .accordion-button {
+  background-color: var(--primary);
+  color: var(--bg);
+  font-weight: 600;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background-color: var(--alt);
+  color: var(--bg);
+}
+
+.faq-accordion .accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(216, 160, 97, 0.4);
+}
+
+.faq-accordion .accordion-body {
+  background-color: var(--bg);
+  color: var(--alt);
+  border-top: 1px solid var(--primary);
+}
+
+/* Modal*/
+.btn-modal {
+  display: block;
+  margin: 1rem auto;
+  background-color: var(--bg);
+  color: var(--alt);
+  border: 1px solid transparent;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border 0.3s;
+}
+
+.btn-modal:hover {
+  background-color: var(--alt);
+  color: var(--bg);
+  border: 1px solid var(--bg);
+}

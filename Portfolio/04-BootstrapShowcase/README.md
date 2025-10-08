@@ -49,3 +49,16 @@ Select 5 elements from the following list and make a small demo of how would you
 ---
 
 You can find some examples of implementation in the Bootstrap homepage.
+
+
+## My implementation idea
+
+My idea for this website is a coffee culture website and i want to make it a little blog for 
+my favourite methods of preparation and my favourite brands.
+It will have a landing page and a latest blogs link, and a submission of post 
+email call to action in the right for suggesting new posts
+the blog entries are one of the following:
++ experiences with coffee
++ reviews of coffee places/beans
++ tutorials
+

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Showcase (exercise 04)</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <!--Nav bar-->
+    <nav class="navbar navbar-expand-lg text-center align-items-center">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item">
+              <a class="nav-link nav-logo" aria-current="page" href="#">
+                <img src="logo.jpg" width="96px" alt="Logo" />
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Recent entries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Coffee Recomendations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">Best coffee brands</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--Modal-->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main class="container">
+      <div>
+        <div class="row g-4 my-4">
+          <article class="col">
+            <h2>What is Coffing?</h2>
+            <p>
+              Coffee blogs suck. That's a reality. They start with tutorials but
+              they all end up in advertising expensive gear you don't need but
+              you start to think you do. We are like you: we try coffee, we say
+              what we think about it, we share what we think. That's it, all
+              recommendations are totally biased, but at least here we are not
+              selling you anything.
+            </p>
+
+            <button class="btn btn-modal" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Click to see a real coffee
+            </button>
+          </article>
+          <aside class="col bg-alt rounded">
+            <h3>Who are we?</h3>
+
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+            <h3>Who are we?</h3>
+          </aside>
+        </div>
+      </div>
+
+      <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion faq-accordion" id="faq-accordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqOne"
+                aria-expanded="true"
+                aria-controls="faqOne"
+              >
+                What’s the difference between espresso and regular coffee?
+              </button>
+            </h2>
+            <div
+              id="faqOne"
+              class="accordion-collapse collapse show"
+              data-bs-parent="#faq-accordion"
+            >
+              <div class="accordion-body">
+                <strong>Espresso is just a brewing method.</strong> It’s made by
+                forcing hot water through finely ground coffee under high
+                pressure, producing a small, strong shot. Regular coffee (like
+                drip or pour-over) uses gravity instead, making a larger and
+                lighter cup. The beans are often the same — only the grind and
+                method change.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqTwo"
+                aria-expanded="false"
+                aria-controls="faqTwo"
+              >
+                What type of coffee beans should beginners start with?
+              </button>
+            </h2>
+            <div
+              id="faqTwo"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faq-accordion"
+            >
+              <div class="accordion-body">
+                <strong>Start with medium roast.</strong> They have a great
+                flavor that’s easy to enjoy without being a enthusiast, but its
+                a start to really <i>enjoy</i> coffee. Dark roasts taste
+                stronger and smokier, while light roasts are brighter, but those
+                are fancy words for later, really it narrows down to do you like
+                it or not.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqThree"
+                aria-expanded="false"
+                aria-controls="faqThree"
+              >
+                Do I need an expensive machine to make good coffee?
+              </button>
+            </h2>
+            <div
+              id="faqThree"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faq-accordion"
+            >
+              <div class="accordion-body">
+                <strong>No — technique matters more than gear.</strong> A simple
+                French press, Moka Pot, or pour-over setup can make great coffee
+                for under $30. Focus in the beans and the preparation,
+                store-bought coffee beans tend to be very basic, and we are not
+                that anymore. Expensive machines just make consistency and
+                convenience easier, but that is for the rich you, in the future.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!--Accordion-->
+    <!--Buttons-->
+    <!--Button groups-->
+    <!--Card-->
+    <!--Modal-->
+    <!--Pop over-->
+    <!--Progress-->
+    <!--Spinner-->
+    <!--Tooltips-->
+    <!--Iconic link-->
+    <!--Floating labels-->
+    <!--Borders & background-->
+    <footer></footer>
+  </body>
+</html>
