@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personal website bootstrap potential additions</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --mx-green: #006341;
+        --mx-white: #ffffff;
+        --mx-red: #ce1126;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          Arial;
+        margin: 0;
+      }
+      nav {
+        background: var(--mx-green);
+      }
+      nav .navbar-brand,
+      nav .nav-link,
+      nav .btn-outline-light {
+        color: var(--mx-white);
+      }
+      nav .nav-link:hover,
+      nav .btn-outline-light:hover {
+        color: var(--mx-red);
+      }
+      .carousel-item svg {
+        height: 250px;
+        background: #eee;
+      }
+      .toast-container {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1080;
+      }
+      footer {
+        background: var(--mx-green);
+        color: var(--mx-white);
+        padding: 1rem 0;
+        text-align: center;
+        margin-top: auto;
+      }
+      .btn-mx {
+        border-color: var(--mx-white);
+        color: var(--mx-white);
+      }
+      .btn-mx:hover {
+        background: var(--mx-white);
+        color: var(--mx-green);
+      }
+      section {
+        padding: 2rem 1rem;
+      }
+      h2 {
+        margin-bottom: 1rem;
+      }
+      .feature-desc {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg px-3">
+      <a class="navbar-brand fw-bold" href="#">Álvaro's ideas for his website</a>
+      <div class="collapse navbar-collapse">
+        <form
+          class="d-flex ms-auto"
+          onsubmit="event.preventDefault(); alert('Searching: ' + document.getElementById('search').value)"
+        >
+          <input
+            id="search"
+            class="form-control me-2"
+            type="search"
+            placeholder="Buscar"
+          />
+          <button class="btn btn-outline-light" type="submit">Go</button>
+        </form>
+      </div>
+    </nav>
+
+    <!-- SECTION 1: CAROUSEL WITH TITLE & TEXT -->
+    <section id="carousel-section">
+      <h2>1. Carousel for projects</h2>
+      <p class="feature-desc">This carousel is useful for showcasing</p>
+      <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <svg class="d-block w-100" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="#ddd"></rect>
+              <text
+                x="50%"
+                y="50%"
+                text-anchor="middle"
+                dy=".3em"
+                font-size="24"
+              >
+                OpenGL Project
+              </text>
+            </svg>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>OpenGL Demo</h5>
+              <p>Minimal visualization of graphics.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <svg class="d-block w-100" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="#ccc"></rect>
+              <text
+                x="50%"
+                y="50%"
+                text-anchor="middle"
+                dy=".3em"
+                font-size="24"
+              >
+                Visual Minimal
+              </text>
+            </svg>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Minimal Visuals</h5>
+              <p>Simple and clean display of information.</p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="toast-section">
+      <h2>2. Toast Notification</h2>
+      <p class="feature-desc">
+        Notifications, for when an event is fired or submit a form.
+      </p>
+      <button id="showToast" class="btn btn-mx">Show Toast</button>
+
+      <div class="toast-container">
+        <div
+          id="toast"
+          class="toast align-items-center text-bg-light border-0"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="d-flex">
+            <div class="toast-body">Notification!!!</div>
+            <button
+              type="button"
+              class="btn-close me-2 m-auto"
+              data-bs-dismiss="toast"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="form-section">
+      <h2>3. form to sign in as admin</h2>
+      <p class="feature-desc">
+        Maybe admin panel to change some text entries without moving html
+        around, just blogging as if i dont know web dev.
+      </p>
+      <form
+        class="mx-auto"
+        style="max-width: 400px"
+        onsubmit="event.preventDefault(); alert('Signed in as: ' + document.getElementById('email').value)"
+      >
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-dark w-100">Sign In</button>
+      </form>
+    </section>
+
+    <section id="search-section">
+      <h2>4. Navbar with Search</h2>
+      <p class="feature-desc">
+        The top navbar contains a search field, when my site grows, it can be
+        useful.
+      </p>
+    </section>
+    <section id="footer-section">
+      <h2>5. Sticky Footer</h2>
+      <p class="feature-desc">Footer that stays down, always</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      &copy; <span id="year"></span> Álvaro Gallo • Minimal bootstrap additions
+      to personal portfolio
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const toastEl = document.getElementById("toast");
+      const toast = new bootstrap.Toast(toastEl, {
+        autohide: true,
+        delay: 3000,
+      });
+      document
+        .getElementById("showToast")
+        .addEventListener("click", () => toast.show());
+    </script>
+  </body>
+</html>

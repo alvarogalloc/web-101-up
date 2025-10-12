@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express test</title>
+</head>
+
+<body>
+    <% if (locals.error) { %>
+        <h3>
+            <%= error %>
+        </h3>
+        <% } %>
+            <form action="/greet" method="get">
+                Register (for many, separate by spaces):
+                <br>
+                <input type="text" name="name" id="name" placeholder="Name">
+                <input type="submit" value="go next">
+            </form>
+            <% if (locals.name) { %>
+            <p>Greetings [<%= name %>]</p>
+            <% } %>
+            <% if(locals.names && locals.names.length) { %>
+            <strong>Persons registered:</strong>
+            <ul>
+              <% for (n of names) { %>
+              <li>
+                <a href="/wazzup?name=<%= n %>"><%= n %></a>
+              </li>
+              <% } %>
+            </ul>
+            <% } %>
+
+            
+            <% if(locals.to_index_link) { %>
+              <a href="/">&larr;go back</a>
+            <% } %>
+
+
+              <h2>To-do List</h2>
+            <% if(locals.tasks && locals.tasks.length) { %>
+              <ul>
+              <% for (t in tasks) { %>
+              <li>
+                <%=t%>
+                <%=tasks[t].description %> 
+                <button type="button" onclick="delete_task(<%=t%>)">Delete</button>
+                <% if(t > 0) { %>
+                  <button type="button" onclick="swap_tasks(<%=t%>, <%=parseInt(t)-1%>)">&uparrow;</button>
+                <% }%>
+                <% if(t < tasks.length-1) { %>
+                  <button type="button" onclick="swap_tasks(<%=t%>, <%=parseInt(t)+1%>)">&downarrow;</button>
+                <% }%>
+              </li>
+              <% } %>
+                
+              </ul>
+              <% } %>
+            <form action="/task" method="post">
+              <label for="description"> Description:
+
+              </label>
+              <input type="text" name="description" required>
+              <br>
+              <label for="priority"  >Priotrity:</label>
+              <select name="priority">
+                <option value="0" selected>LOW</option>
+                <option value="1" >MID</option>
+                <option value="2" >HIGH</option>
+                <option value="3" >CRITICAL</option>
+              </select>
+              <br>
+              <button type="submit">add new task</button>
+              
+            </form>
+
+            <script>
+              function delete_task(idx) {
+                idx = parseInt(idx);
+                console.log("removing", idx);
+                fetch(`/task?id=${idx}`, {
+                  method: 'DELETE'
+                })
+                
+              }
+              function swap_tasks(l_idx, r_idx) {
+
+                l_idx = parseInt(l_idx);
+                r_idx = parseInt(r_idx);
+              }
+              
+            </script>
+</body>
+
+</html>
