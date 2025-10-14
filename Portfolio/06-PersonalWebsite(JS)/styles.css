@@ -1,0 +1,197 @@
+:root {
+  --font-body: "Merriweather", serif;
+  --font-heading: "Sacramento", cursive;
+  --font-heading2: "Montserrat", sans-serif;
+  --max-width: 70%;
+
+  /*
+  pallete with notebook warm colors: i want the page to as self explanatory and calm as possible
+  */
+  --bg: #f4ecd8;
+  --bg-alt: #e9c793;
+  --text: #3e2c1c;
+  --alt: #8b6b4a;
+  --muted: #6b5440;
+  --border: #d8c8a8;
+  --link: #5a3e2b;
+  --link-hover: #438524;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  max-width: 100%;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+header {
+  border-bottom: 1px solid var(--border);
+  background: #efe6d2;
+  padding: 1rem;
+}
+header >*{
+  max-width: var(--max-width);
+  margin: 1rem auto;
+}
+
+nav {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+nav a {
+  padding: 0 1rem;
+  border-left: 1px solid var(--border);
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+}
+
+h1,
+h2 {
+  line-height: 1.3;
+}
+.bg-alt {
+  background: var(--bg-alt);
+}
+
+h1 {
+  font-size: 5.5rem;
+  margin: 50px;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-family: var(--font-heading2);
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-family: var(--font-heading2);
+  color: var(--alt);
+}
+h4 {
+  font-size: 1.5rem;
+  color: var(--alt);
+  font-family: var(--font-heading2);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 0.5em;
+  text-align: center;
+}
+#schedule table td {
+  border: 1px solid var(--border);
+}
+
+#books-movies-shows > table {
+  width: 100%;
+}
+
+hr {
+  /*este color es horrible para este website, pero asi lo pide, ni modo*/
+  border-top: 6px dotted #eaf6f6;
+  border-bottom: none;
+  width: 4%;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+#new-event table td {
+  border: none;
+}
+
+#new-event form {
+  /* border: 10px var(--bg-alt); */
+  background: var(--bg);
+}
+#new-event #addEventBtn {
+  background: var(--bg-alt);
+  color: var(--text);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/*Make all inputs rounded and set their backgrounds to a color that plays well with the background of the form*/
+#new-event input,
+#new-event select,
+#new-event button,
+#new-event textarea {
+  border-radius: 0.5rem;
+  background: var(--bg);
+  border: 2px solid;
+}
+
+.mountain {
+  position: static;
+  float: right;
+}
+
+.cloud {
+  position: sticky;
+  top: 20px;
+  width: 100px;
+  z-index: 1;
+}
+
+.cloud-left {
+  float: left;
+  margin-left: 20px;
+}
+
+.cloud-right {
+  float: right;
+  margin-right: 20px;
+}
+

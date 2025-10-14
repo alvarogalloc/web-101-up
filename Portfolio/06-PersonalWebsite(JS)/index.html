@@ -1,12 +1,536 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Website - CSS</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Álvaro Gallo Cruz — Personal Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+
+  <body>
+    <img class="cloud cloud-left" src="./images/cloud.png" alt="cloud" />
+    <img class="cloud cloud-right" src="./images/cloud.png" alt="cloud" />
+
+    <header>
+      <table>
+        <tr>
+          <td>
+            <h1>Álvaro Gallo Cruz</h1>
+          </td>
+          <td>
+            <img width="240" src="images/me.jpg" alt="Álvaro Gallo Cruz" />
+          </td>
+        </tr>
+      </table>
+      <p class="muted">
+        CS undergrad & Software Developer at Crabi Seguros • C++ & graphics
+        programming • Richard Wagner 5138, Zapopan, Jalisco •
+        <a href="mailto:galloalvaro5@gmail.com">galloalvaro5 at gmail dotcom</a>
+      </p>
+      <nav>
+        <a href="#introduction">Intro</a>
+        <a href="#background">Background</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#books-movies-shows">Entertainement</a>
+        <a href="#fav-food">Fav. Food</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#heroes">Heroes</a>
+        <a href="#schedule">Schedule</a>
+        <a href="destination.html">My Favorite Spots &rarr;</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          Hey! I'm Álvaro Gallo, a computer science student at Universidad
+          Panamericana, with interest in graphics programming. I do some
+          projects and school assignments and publish them in my Github page. I
+          like to read, write and play the piano in my free time. My favorite
+          quote is:
+        </p>
+        <blockquote cite="">
+          Until the day God will deign to reveal the future to man, all human
+          wisdom is contained in these two words, 'Wait and Hope'
+          <br />
+          - The Count of Monte-Cristo, Alexandre Dumas
+        </blockquote>
+      </section>
+      <hr />
+
+      <section class="bg-alt" id="background">
+        <h2>Background</h2>
+        <p>
+          I've been programming since I was 15, starting with C++ and simple web
+          development. I later graphics programming, which is what I enjoy the
+          most. I've worked with C++ for 4 years now, and I enjoy learning new
+          things about the language and its ecosystem. I'm currently learning
+          more about competitive programming and graphics programming in my free
+          time.
+          <br />
+          My goal is to become an investigator in the graphics programming
+          field, or to put my own company related to it. I'm currently looking
+          for internships or job opportunities to build some experience.
+        </p>
+        <div id="schools">
+          <h3>Schools</h3>
+          <ul>
+            <li>
+              <a href="https://www.altamira.edu.mx/">
+                <img
+                  style="border-radius: 50%"
+                  src="images/altamira-logo.png"
+                  alt="Colegio Altamira logo"
+                />
+                <strong>Colegio Altamira</strong></a
+              >
+              <em>(2012-2024)</em>
+            </li>
+
+            <li>
+              <a href="https://www.up.edu.mx/">
+                <img
+                  style="border-radius: 50%"
+                  src="images/up-logo.png"
+                  alt="Universidad Panamericana logo"
+                />
+                <strong>Universidad Panamericana</strong></a
+              >
+              <em>(2024-now)</em>
+            </li>
+          </ul>
+        </div>
+
+        <div id="skills">
+          <h3>Skills</h3>
+
+          <ol>
+            <li>
+              <strong>C++ (80%):</strong>
+              <p>
+                Modern standards, project structure, best practices (linters,
+                memory safety, etc), open source contribution, external library
+                usage (SFML, Raylib, ImGui, SDL, EnTT).
+              </p>
+            </li>
+
+            <li>
+              <strong
+                >Server configuration and system technologies (70%):</strong
+              >
+              <p>
+                Linux, ssh, Docker, Bash scripting, Nginx, Caddy reverse proxy,
+                Apache, etc.
+              </p>
+            </li>
+
+            <li>
+              <strong>DevOps (60%):</strong>
+              <p>
+                Git, Github, Buildsystems, Makefiles, CI with github actions.
+              </p>
+            </li>
+            <li>
+              <strong>Web Technologies (50%):</strong>
+              <p>
+                HTML/CSS/JS, React with Redux, Backend development with restapi
+                and template (expressjs, flask with jinja and fastapi), SQL
+                databases (MySQL, Postgres).
+              </p>
+            </li>
+            <li>
+              <strong>AI Usage (30%):</strong>
+              <p>
+                Code completion using github copilot. Text generation using chat
+                gpt, gemini and claude.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <hr />
+
+      <section id="hobbies">
+        <h2>Hobbies</h2>
+        <ul>
+          <li>
+            I like writing personal essays and documentation on technical and
+            philosophy topics.
+          </li>
+          <li>I like reading classics and science fiction books.</li>
+
+          <li>
+            I play the piano, I've been learning since I was 13 and I still play
+            and take lessons in my free time. I specifically enjoy playing and
+            listening to classical music
+          </li>
+        </ul>
+      </section>
+      <hr />
+      <section class="bg-alt" id="books-movies-shows">
+        <h2>Favorite Books, Movies & TV Shows</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Books</th>
+              <th>Movies</th>
+              <th>TV Shows</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <ol>
+                  <li>
+                    <img
+                      src="images/count-of-montecristo.jpg"
+                      alt="The Count of Monte-Cristo cover"
+                      width="80"
+                    />
+                    <span>The Count of Monte-Cristo - Alexandre Dumas</span>
+                  </li>
+                  <li>
+                    <img
+                      src="images/white-nights.jpg"
+                      alt="White Nights cover"
+                      width="80"
+                    />
+                    <span>White Nights - Fyodor Dostoevski</span>
+                  </li>
+                  <li>
+                    <img
+                      src="images/where-were-you-last-pluterday.jpg"
+                      alt="Where Were You Last Pluterday? cover"
+                      width="80"
+                    />
+                    <span>Where Were You Last Pluterday? - Paul Van Herck</span>
+                  </li>
+                </ol>
+              </td>
+              <td>
+                <ol>
+                  <li>
+                    <img
+                      src="images/ferris-bueller.jpg"
+                      alt="Ferris Bueller's Day Off cover"
+                      width="80"
+                    />
+                    <span>Ferris Bueller's Day Off</span>
+                  </li>
+                  <li>
+                    <img
+                      src="images/stand-by-me.jpg"
+                      alt="Stand By Me cover"
+                      width="80"
+                    />
+                    <span>Stand By Me</span>
+                  </li>
+                  <li>
+                    <img
+                      src="images/midnight-in-paris.jpg"
+                      alt="Midnight in Paris cover"
+                      width="80"
+                    />
+                    <span>Midnight in Paris</span>
+                  </li>
+                </ol>
+              </td>
+              <td>
+                <ol>
+                  <li>
+                    <img
+                      src="images/how-i-met-your-mother.jpg"
+                      alt="How I Met Your Mother cover"
+                      width="80"
+                    />
+                    <span>How I Met Your Mother</span>
+                  </li>
+                  <li>
+                    <img
+                      src="images/boy-meets-world.jpg"
+                      alt="Boy Meets World cover"
+                      width="80"
+                    />
+                    <span>Boy Meets World</span>
+                  </li>
+                  <li>
+                    <img
+                      src="images/two-and-a-half-men.jpg"
+                      alt="Two and a Half Men cover"
+                      width="80"
+                    />
+                    <span>Two and a Half Men</span>
+                  </li>
+                </ol>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <hr />
+      <section id="fav-food">
+        <h2>Favorite food</h2>
+        <h3>Favorite cuisines:</h3>
+        <ol>
+          <li>Mexican</li>
+          <li>Italian</li>
+          <li>Japanese</li>
+          <li>Spanish</li>
+          <li>German</li>
+        </ol>
+
+        <h3>Least favorite cuisines:</h3>
+        <ol>
+          <li>Arab</li>
+          <li>Scottish</li>
+          <li>English</li>
+        </ol>
+      </section>
+      <hr />
+
+      <section class="bg-alt" id="projects">
+        <h2>Projects</h2>
+        <p>
+          <strong>Tower defense game</strong>
+          <a href="github.com/alvarogalloc/tower-defense">repo</a>
+          - A simple tower defense game based in space. (work in progress)
+        </p>
+        <p>
+          <strong>Parabolic shot simulator</strong>
+          <a href="github.com/alvarogalloc/spring-shot">repo</a>
+          - Simulator for parabolic motion in lua, used in Open Doors 2023
+        </p>
+
+        <p>
+          <strong>Connect four game</strong>
+          <a href="github.com/alvarogalloc/connect-four">repo</a>
+          - A simple connect four game made in C++20 and sfml using an
+          ecs(2024).
+        </p>
+      </section>
+      <hr />
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <p>
+          Software developer with focus on modern C++ and graphics. I enjoy
+          building clean APIs and tools that last.
+        </p>
+      </section>
+      <hr />
+
+      <section class="bg-alt" id="heroes">
+        <h2>Heroes</h2>
+        <table class="heroes-table">
+          <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Date of Birth / Death</th>
+            <th>Profession</th>
+            <th>Achievements / Famous Work</th>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="images/steve-wozniak.jpg"
+                alt="Steve Wozniak"
+                width="120"
+              />
+            </td>
+            <td>Steve Wozniak</td>
+            <td>Aug 11, 1950 -</td>
+            <td>Engineer, Inventor</td>
+            <td>
+              Co-founder of Apple Inc., designer of Apple I and II computers
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="images/carlo-acutis.jpeg"
+                alt="Carlo Acutis"
+                width="120"
+              />
+            </td>
+            <td>Carlo Acutis</td>
+            <td>May 3, 1991 – Oct 12, 2006</td>
+            <td>Student, Programmer</td>
+            <td>
+              Documented Eucharistic miracles, beatified by the Catholic Church
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="images/gustavo-dudamel.jpg"
+                alt="Gustavo Dudamel"
+                width="120"
+              />
+            </td>
+            <td>Gustavo Dudamel</td>
+            <td>Jan 26, 1981 -</td>
+            <td>Conductor, Violinist</td>
+            <td>Music Director of LA Philharmonic, world-renowned conductor</td>
+          </tr>
+        </table>
+      </section>
+      <hr />
+
+      <section id="schedule">
+        <h2>Weekly Schedule</h2>
+        <table id="scheduleTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Description</th>
+              <th>Place</th>
+              <th>Type</th>
+              <th>Notes</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <hr />
+      <section class="bg-alt" id="new-event">
+        <h2>Add New Event</h2>
+
+        <form class="container p-4 rounded shadow-sm" id="eventForm" action="">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input
+                  type="date"
+                  class="form-control"
+                  id="date"
+                  name="date"
+                  required
+                />
+                <label for="date">Date</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="time"
+                  class="form-control"
+                  id="start"
+                  name="start"
+                  required
+                />
+                <label for="start">Start Time</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="time"
+                  class="form-control"
+                  id="end"
+                  name="end"
+                  required
+                />
+                <label for="end">End Time</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="activity"
+                  name="activity"
+                  placeholder="Activity"
+                  required
+                />
+                <label for="activity">Activity</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="place"
+                  name="place"
+                  placeholder="Place"
+                  required
+                />
+                <label for="place">Place</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <select class="form-select" id="type" name="type" required>
+                  <option value="school">School</option>
+                  <option value="personal">Personal</option>
+                  <option value="professional">Professional</option>
+                  <option value="familiar">Familiar</option>
+                  <option value="other">Other</option>
+                </select>
+                <label for="type">Type</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <textarea
+                  class="form-control"
+                  id="notes"
+                  name="notes"
+                  style="height: 100px"
+                ></textarea>
+                <label for="notes">Notes</label>
+              </div>
+
+              <div class="mb-3 d-flex align-items-center gap-2">
+                <label for="flag" class="form-label mb-0">Flag Color:</label>
+                <input
+                  type="color"
+                  id="flag"
+                  name="flag"
+                  class="form-control form-control-color"
+                  value="#000000"
+                  title="Choose color"
+                />
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="busy"
+                  name="busy"
+                />
+                <label class="form-check-label" for="busy">Busy</label>
+              </div>
+
+              <button id="addEventBtn" type="submit" class="btn w-100">
+                Add Event
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+    <img class="mountain" src="./images/mountain.png" alt="mountain" />
+    <script src="./js/server.js"></script>
+  </body>
 </html>

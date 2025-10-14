@@ -65,3 +65,11 @@ Look for the algorithm and implement it.
 This is a game that will show you how happiness/sadness affects the surronding people. In this game you start with a society with initial happy/sad parameters given by the individuals that are there. They will interact with each other and their happy factors will change, depending on which character contacts who. When the happyness values go below 0, then the subject will turn sad, but if the happyness values goes above 1, they will become happy people.
 
 Implement the missing methods as required in the TODO messages in the code.
+
+
+# Personal selections
+1. Sieve of Eratosthenes. done 3
+2. Pig Latin. done 2
+3. Fibonacci. done 1 
+4. Prime numbers. done 2
+note: i moved the script to the bottom of the html files because i dont have to wait for domcontentloaded and it finds the elements right away

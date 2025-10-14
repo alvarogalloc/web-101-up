@@ -2,32 +2,45 @@
 Pig Latin
 */
 
-function igpayAtinlay(str) {
-  // TODO: Initialize the word array properly
-  var returnArray = [],
-    wordArray = [];
-  // TODO: make sure that the output is being properly built to produce the desired result.
-  for (var i = 0; i < wordArray.length; i++) {
-    var word = wordArray[i];
-    var beginning = word.charAt(0);
+function processWord(word) {
+  var vowels = "aeiouAEIOU";
+  // starts with vowel
+  if (vowels.indexOf(word[0]) !== -1) {
+    return word + "way";
+  }
 
-    if (/[aeiouAEIOU]/.test(beginning)) {
-      returnArray.push(word);
-      continue;
-    }
-
-    for (var ii = 1; ii < word.length; ii++) {
-      if (/[aeiouAEIOU]/.test(word.charAt(ii))) {
-        break;
-      } else {
-        beginning += word.charAt(ii);
-      }
+  // find first vowel
+  var firstVowel = -1;
+  for (var i = 0; i < word.length; i++) {
+    if (vowels.indexOf(word[i]) !== -1) {
+      firstVowel = i;
+      break;
     }
   }
-  return returnArray.join(" ");
+
+  // is does not have a vowel
+  if (firstVowel === -1) return word + "ay";
+
+  // put from the first vowel to the end, then the previous characters and then 'ay'
+  return word.slice(firstVowel) + word.slice(0, firstVowel) + "ay";
+}
+function igpayAtinlay(str) {
+  var words = str.split(" ");
+  var result = [];
+
+
+  for (var i = 0; i < words.length; i++) {
+    result.push(processWord(words[i]));
+  }
+
+  return result.join(" ");
 }
 
-// Some examples of expected outputs
-console.log(igpayAtinlay("pizza")); // "izzapay"
-console.log(igpayAtinlay("apple")); // "appleway"
-console.log(igpayAtinlay("happy meal")); // "appyhay ealmay"
+// Examples
+// console.log(igpayAtinlay("pizza"));      // "izzapay"
+// console.log(igpayAtinlay("apple"));      // "appleway"
+// console.log(igpayAtinlay("happy meal")); // "appyhay ealmay"
+document.querySelector('#btn').addEventListener('click', () => {
+  let str = document.querySelector('#txtVal').value
+  document.querySelector('#pigLatLbl').innerText = igpayAtinlay(str)
+})
