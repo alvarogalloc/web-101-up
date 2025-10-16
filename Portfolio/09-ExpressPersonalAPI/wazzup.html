@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>09 - Personal API - Alvaro Gallo</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div id="content"></div>
+    <a href="/">&larr; Go back to home</a>
+
+    <script>
+      function escapeHtml(unsafe) {
+        const div = document.createElement("div");
+        div.textContent = unsafe;
+        return div.innerHTML;
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("name");
+
+      async function validateAndDisplay() {
+        if (!name) {
+          document.getElementById("content").innerHTML =
+            '<div class="error">No name provided</div>';
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            `/api/validate-person?name=${encodeURIComponent(name)}`,
+          );
+          const data = await response.json();
+
+          if (response.ok) {
+            document.getElementById("content").innerHTML = `
+                        <h1>Success!!</h1>
+                        <h2>Wazzup ${escapeHtml(name)}!</h2>
+                    `;
+          } else {
+            document.getElementById("content").innerHTML =
+              `<div class="error">${escapeHtml(data.error)}</div>`;
+          }
+        } catch (error) {
+          document.getElementById("content").innerHTML =
+            '<div class="error">Failed to validate person</div>';
+        }
+      }
+
+      validateAndDisplay();
+    </script>
+  </body>
+</html>

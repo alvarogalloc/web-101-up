@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+.error {
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+  margin: 10px 0;
+  display: none;
+}
+.error.show {
+  display: block;
+}
+section {
+  margin: 20px 0;
+}
+input,
+select,
+button {
+  margin: 5px 0;
+  padding: 5px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  padding: 8px;
+  margin: 5px 0;
+}
+.priority-LOW {
+  color: #666;
+}
+.priority-MID {
+  color: #0066cc;
+}
+.priority-HIGH {
+  color: #ff9900;
+}
+.priority-CRITICAL {
+  color: #cc0000;
+}
+hr {
+  margin: 30px 0;
+}
+
+.error {
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+  margin: 20px 0;
+}

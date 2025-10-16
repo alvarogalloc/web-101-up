@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>09 - Personal API - Alvaro Gallo</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h1>Personal Api - Alvaro Gallo</h1>
+
+    <div id="error" class="error"></div>
+
+    <section>
+      <h2>Register Names</h2>
+      <form id="greetForm">
+        <label for="name">Enter names (separated by spaces):</label><br />
+        <input type="text" name="name" id="name" placeholder="Name" required />
+        <button type="submit">Register</button>
+      </form>
+      <div id="personsList"></div>
+    </section>
+
+    <hr />
+
+    <section>
+      <h2>To-Do List</h2>
+      <div id="tasksList"></div>
+
+      <h3>Add New Task</h3>
+      <form id="taskForm">
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description" required />
+        <br />
+        <label for="priority">Priority:</label>
+        <select name="priority" id="priority">
+          <option value="0" selected>LOW</option>
+          <option value="1">MID</option>
+          <option value="2">HIGH</option>
+          <option value="3">CRITICAL</option>
+        </select>
+        <br />
+        <button type="submit">Add Task</button>
+      </form>
+    </section>
+
+    <script>
+      const PRIORITY_LABELS = ["LOW", "MID", "HIGH", "CRITICAL"];
+
+      function showError(message) {
+        const errorDiv = document.getElementById("error");
+        errorDiv.textContent = "Error: " + message;
+        errorDiv.classList.add("show");
+        setTimeout(() => errorDiv.classList.remove("show"), 5000);
+      }
+
+      function escapeHtml(unsafe) {
+        // this is AI generated, i did not know this trick
+        const div = document.createElement("div");
+        div.textContent = unsafe;
+        return div.innerHTML;
+      }
+
+      async function loadPersons() {
+        try {
+          const response = await fetch("/api/persons");
+          const data = await response.json();
+
+          const personsDiv = document.getElementById("personsList");
+          if (data.persons.length > 0) {
+            const items = data.persons
+              .map(
+                (name) =>
+                  `<li><a href="/wazzup?name=${encodeURIComponent(name)}">${escapeHtml(name)}</a></li>`,
+              )
+              .join("");
+            personsDiv.innerHTML = `<strong>Persons registered:</strong><ul>${items}</ul>`;
+          } else {
+            personsDiv.innerHTML = "";
+          }
+        } catch (error) {
+          showError("Failed to load persons");
+        }
+      }
+
+      async function loadTasks() {
+        try {
+          const response = await fetch("/api/tasks");
+          const data = await response.json();
+
+          const tasksDiv = document.getElementById("tasksList");
+          if (data.tasks.length > 0) {
+            const items = data.tasks
+              .map((task, idx) => {
+                const priorityLabel = PRIORITY_LABELS[task.priority];
+                const upButton =
+                  idx > 0
+                    ? `<button onclick="swapTasks(${idx}, ${idx - 1})">&uarr;</button>`
+                    : "";
+                const downButton =
+                  idx < data.tasks.length - 1
+                    ? `<button onclick="swapTasks(${idx}, ${idx + 1})">&darr;</button>`
+                    : "";
+
+                return `
+                            <li>
+                                <strong class="priority-${priorityLabel}">[${priorityLabel}]</strong>
+                                ${escapeHtml(task.description)}
+                                <button onclick="deleteTask(${idx})">Delete</button>
+                                ${upButton}
+                                ${downButton}
+                            </li>
+                        `;
+              })
+              .join("");
+            tasksDiv.innerHTML = `<ul>${items}</ul>`;
+          } else {
+            tasksDiv.innerHTML = "<p><em>No tasks yet. Add one below!</em></p>";
+          }
+        } catch (error) {
+          showError("Failed to load tasks");
+        }
+      }
+
+      // Handle greet form submission
+      document
+        .getElementById("greetForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          const name = formData.get("name");
+
+          try {
+            const response = await fetch(
+              `/api/greet?name=${encodeURIComponent(name)}`,
+            );
+            const data = await response.json();
+
+            if (response.ok) {
+              e.target.reset();
+              loadPersons();
+            } else {
+              showError(data.error);
+            }
+          } catch (error) {
+            showError("Failed to register name");
+          }
+        });
+
+      // Handle task form submission
+      document
+        .getElementById("taskForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+
+          try {
+            const response = await fetch("/api/task", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                description: formData.get("description"),
+                priority: formData.get("priority"),
+              }),
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+              e.target.reset();
+              loadTasks();
+            } else {
+              showError(data.error);
+            }
+          } catch (error) {
+            showError("Failed to add task");
+          }
+        });
+
+      // Delete task
+      async function deleteTask(idx) {
+        if (!confirm("Delete this task?")) return;
+
+        try {
+          const response = await fetch(`/api/task?id=${idx}`, {
+            method: "DELETE",
+          });
+          const data = await response.json();
+
+          if (response.ok) {
+            loadTasks();
+          } else {
+            showError(data.error);
+          }
+        } catch (error) {
+          showError("Failed to delete task");
+        }
+      }
+
+      // Swap tasks
+      async function swapTasks(idx1, idx2) {
+        try {
+          const response = await fetch("/api/task/swap", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ l_idx: idx1, r_idx: idx2 }),
+          });
+          const data = await response.json();
+
+          if (response.ok) {
+            loadTasks();
+          } else {
+            showError(data.error);
+          }
+        } catch (error) {
+          showError("Failed to swap tasks");
+        }
+      }
+
+      // Initial load
+      loadPersons();
+      loadTasks();
+    </script>
+  </body>
+</html>
