@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -11,23 +10,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(__dirname)); // Serve 
 
-// In-memory data storage
+
 let persons_to_greet = [];
 let tasks = [];
 
-// static is './html'
-
-// Get all persons
 app.get('/api/persons', (req, res) => {
   res.json({ persons: persons_to_greet });
 });
 
-// Get all tasks
 app.get('/api/tasks', (req, res) => {
   res.json({ tasks });
 });
 
-// Add person(s) via GET (for form compatibility)
+// Add person(s) with unprotected form
 app.get('/api/greet', (req, res) => {
   const name = req.query.name;
 
@@ -42,7 +37,8 @@ app.get('/api/greet', (req, res) => {
   res.json({ success: true, persons: persons_to_greet });
 });
 
-// Validate person exists
+
+// this is extra, i added it to validate if a person is in the list as a separate endpoint
 app.get('/api/validate-person', (req, res) => {
   const name = req.query.name;
 
@@ -52,8 +48,6 @@ app.get('/api/validate-person', (req, res) => {
 
   res.json({ success: true, name });
 });
-
-// Add task
 app.post('/api/task', (req, res) => {
   const { description, priority } = req.body;
   const priorityNum = parseInt(priority);
@@ -72,7 +66,6 @@ app.post('/api/task', (req, res) => {
   res.json({ success: true, tasks });
 });
 
-// Swap tasks
 app.post('/api/task/swap', (req, res) => {
   const { l_idx, r_idx } = req.body;
 
@@ -85,8 +78,6 @@ app.post('/api/task/swap', (req, res) => {
 
   res.json({ success: true, tasks });
 });
-
-// Delete task
 app.delete('/api/task', (req, res) => {
   const id = parseInt(req.query.id);
 
@@ -99,8 +90,6 @@ app.delete('/api/task', (req, res) => {
 
   res.json({ success: true, tasks });
 });
-
-// PUT method for adding person (Postman only)
 app.put('/greet', (req, res) => {
   const name = req.query.name;
 
@@ -114,15 +103,11 @@ app.put('/greet', (req, res) => {
 
   res.json({ names: persons_to_greet });
 });
-
-// GET /task for Postman (returns all tasks)
 app.get('/task', (req, res) => {
   res.json(tasks);
 });
 
-// ============================================================================
-// HTML ROUTES
-// ============================================================================
+// html files to be served to browser client
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -137,9 +122,6 @@ app.use((req, res) => {
   res.status(404).send('<h1>404 - Not Found</h1><a href="/">Go Home</a>');
 });
 
-// ============================================================================
-// START SERVER
-// ============================================================================
 
 app.listen(port, () => {
   console.log(`Express app listening on port ${port}`);
