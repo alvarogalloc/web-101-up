@@ -45,6 +45,10 @@
     </section>
 
     <script>
+      /*
+      becuase i use fetch api i have to wrap all the polling fns to my express api
+      in async functions and the use append the results to the DOM, transforming json to a structured html
+      */
       const PRIORITY_LABELS = ["LOW", "MID", "HIGH", "CRITICAL"];
 
       function showError(message) {
@@ -147,7 +151,7 @@
           }
         });
 
-      // Handle task form submission
+      // task form
       document
         .getElementById("taskForm")
         .addEventListener("submit", async (e) => {
