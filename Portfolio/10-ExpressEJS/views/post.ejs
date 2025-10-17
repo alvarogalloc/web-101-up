@@ -15,7 +15,24 @@
 
     <button type="submit">Publish</button>
 </form>
+<button id="deletePost" type="button">Delete post</button>
 
+<script>
+document.querySelector('#deletePost').addEventListener('click', () => {
+
+  if (confirm('you really want to delete this?'))
+  {
+    fetch('/post/<%=id%>', {
+        method: 'DELETE'
+      })
+    .then(e => {
+        window.location.assign("/home");
+
+        });
+  }
+})
+
+</script>
 <%- include("partial/footer") %>
 
 

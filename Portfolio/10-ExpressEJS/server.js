@@ -84,6 +84,12 @@ app.post("/post/:id", (req, res) => {
   posts[id]={title, body};
   res.redirect('/home')
 });
+app.delete("/post/:id", (req, res) => {
+  const id = req.params.id;
+  posts=posts.filter((_, idx, _2) => idx !==parseInt(id));
+  res.redirect('/home')
+});
+
 
 
 
