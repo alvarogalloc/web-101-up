@@ -1,0 +1,21 @@
+<%- include("partial/header", { title: post.title }) %>
+
+<a href="/home">Go back</a>
+
+<form action="/post/<%=id%>" method="post" class="post-editor">
+<h2>Modify post</h2>
+
+<div>
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" value="<%=post.title%>" required />
+
+      <label for="body">Your Message</label>
+      <textarea id="body" name="body" rows="4" required><%= post.body%></textarea>
+      </div>
+
+    <button type="submit">Publish</button>
+</form>
+
+<%- include("partial/footer") %>
+
+

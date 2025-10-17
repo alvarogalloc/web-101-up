@@ -1,0 +1,20 @@
+<%- include("partial/header", { title: "Login Page" }) %>
+
+<h1>Please log in</h1>
+<form method="get" action="/login">
+  <label>Name
+  <input type="text" name="user"  required />
+  </label>
+
+  <button type="submit">Insecure (GET)</button>
+</form>
+
+<form method="post" action="/login">
+  <label>Name
+    <input type="text" name="user"  required />
+  </label>
+  <button type="submit">Secure (POST)</button>
+</form>
+
+<%- include("partial/footer") %>
+

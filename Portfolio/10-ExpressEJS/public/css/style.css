@@ -1,8 +1,120 @@
-html {
-    min-height: 100%;
-    position: relative;
-}
+
 
 body {
-    background-color: beige !important;
+  background-color: beige !important;
+  color: #4b3b1f;
+  font-family: "Georgia", serif;
+  margin: 0;
+  padding: 0;
+    height: 100%;
+  display: flex;
+  flex-direction: column;
 }
+
+header {
+  background-color: #d9c39a;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #3b2a1a;
+}
+
+main {
+  padding: 2rem;
+  flex: 1;
+}
+
+footer {
+  background-color: #d9c39a;
+  color: #3b2a1a;
+  text-align: center;
+  padding: 1rem;
+
+}
+
+button {
+  background-color: #c4a772;
+  border: none;
+  color: #3b2a1a;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+
+input[type="text"], textarea {
+  border: 1px solid #c4a772;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  background-color: #f8f5e7;
+  color: #3b2a1a;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+
+form {
+  margin-bottom: 10px;
+}
+form button {
+    margin: 0 auto;
+
+}
+
+
+/* for the grid of the blog postss  */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.post-card {
+  background-color: #f6e7c1;
+  border: 1px solid #d4b46b;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.post-card h3 {
+  margin-top: 0;
+  color: #3b2a1a;
+}
+
+.post-card p {
+  color: #4b3b1f;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+
+.post-editor {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+.post-editor * {
+  width: 100%;
+  margin: 0 auto;
+}
+.post-editor button {
+  display: block;
+  width: 50%;
+}
+

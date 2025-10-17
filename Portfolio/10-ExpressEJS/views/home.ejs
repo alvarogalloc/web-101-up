@@ -1,0 +1,42 @@
+
+<%- include("partial/header", { title: "Hello: "+user }) %>
+
+<a href="/">Logout</a>
+
+<h2>
+  Blog Entries
+</h2>
+<div class="posts-grid">
+  <% posts.forEach(({title, body}, id, _) => { %>
+    <article class="post-card">
+      <h3>
+        <a href="/post/<%= id %>">
+          <%= title  %>
+        </a>
+      </h3>
+      <p><%= body %></p>
+    </article>
+  <% }) %>
+</div>
+<h2>
+ Create blog entry
+</h2>
+
+<section class="new-post">
+  <h2>Write a New Post</h2>
+  <form id="newPostForm" method="post" action="/post">
+    <div>
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" required />
+      <label for="body">Your Message</label>
+      <textarea id="body" name="body" rows="4" required></textarea>
+    </div>
+
+    <button type="submit">Publish</button>
+  </form>
+</section>
+
+
+<%- include("partial/footer") %>
+
+

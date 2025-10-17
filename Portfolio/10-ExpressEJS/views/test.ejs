@@ -1,0 +1,10 @@
+<%- include("partial/header", { title: "Greeting user logged in" }) %>
+
+<h2>Hello, <%= user %>!</h2>
+<p>You have logged in using a <strong><%= securityLevel %></strong> connection.</p>
+
+<a href="/home">Go to Home</a>
+<a href="/">Logout</a>
+
+<%- include("partial/footer") %>
+
