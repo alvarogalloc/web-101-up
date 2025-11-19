@@ -4,23 +4,165 @@ html {
 }
 
 body {
-    background-color: beige !important;
+    background-color: #f5f5dc;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 img {
     width: 80px;
 }
 
-#num,
-#code {
-    width: 35px;
+h1 {
+    color: #c9b220;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    border-bottom: 2px solid #c9b220;
+    padding-bottom: 10px;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
 }
 
 form input,
-select {
-    border-style: none;
+form select {
+    border: 2px solid #ddd;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 4px;
 }
 
-input[type=text]:focus {
-    border: 4px solid #c9b220;
+#num,
+#code {
+    width: 60px;
+}
+
+input[type=text]:focus,
+input[type=date]:focus,
+input[type=url]:focus,
+select:focus {
+    border: 2px solid #c9b220;
+    outline: none;
+}
+
+input[type=submit],
+button {
+    background-color: #c9b220;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type=submit]:hover,
+button:hover {
+    background-color: #a89518;
+}
+
+.view-toggle {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.list-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.driver-list,
+.team-list {
+    list-style: none;
+    padding: 0;
+}
+
+.driver-item,
+.team-item {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.driver-item:hover,
+.team-item:hover {
+    background-color: #f0f0f0;
+}
+
+.driver-info {
+    flex-grow: 1;
+}
+
+.driver-num {
+    background-color: #c9b220;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.driver-code {
+    background-color: #333;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.driver-team {
+    color: #666;
+    margin: 0 10px;
+}
+
+.driver-nationality,
+.driver-dob {
+    color: #888;
+    margin: 0 5px;
+    font-size: 14px;
+}
+
+.driver-actions button,
+.team-drivers button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.team-item h3 {
+    margin: 0 0 10px 0;
+    color: #c9b220;
+}
+
+.team-drivers {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.team-drivers li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.team-drivers li:last-child {
+    border-bottom: none;
 }

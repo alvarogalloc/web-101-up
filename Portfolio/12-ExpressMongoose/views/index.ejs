@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo DB - F1 test</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <img src="/images/StarLion.png" alt="lion brewery" />
+    <h1>Welcome to my F1 DB</h1>
+    
+    <form id="driverForm" method="POST" action="/driver">
+        <h2>Driver information</h2>
+        <input type="hidden" name="driverId" id="driverId" />
+        <input type="text" name="num" id="num" placeholder="Number" required />
+        <input type="text" name="code" id="code" placeholder="Code" required />
+        <input type="text" name="name" id="name" placeholder="Name" required />
+        <input type="text" name="lname" id="lname" placeholder="Last name" required />
+        <br />
+        <label for="dob">Date of birth: </label>
+        <input type="date" name="dob" id="dob" required />
+        <label for="url">Biography URL: </label>
+        <input type="url" name="url" id="url" required />
+        <br />
+        <label for="nation">Nationality: </label>
+        <select name="nation" id="nation" required>
+            <% countries.forEach(country => { %>
+                <option value="<%= country.code %>"><%= country.label %></option>
+            <% }); %>
+        </select>
+        <label for="team">Team: </label>
+        <select name="team" id="team" required>
+            <% teams.forEach(team => { %>
+                <option value="<%= team._id %>"><%= team.name %></option>
+            <% }); %>
+        </select>
+        <p>
+            <input type="submit" value="Save Driver" />
+            <button type="button" id="cancelBtn" style="display:none;" onclick="cancelEdit()">Cancel</button>
+        </p>
+    </form>
+
+    <div class="view-toggle">
+        <button id="toggleBtn" onclick="toggleView()">View by Teams</button>
+    </div>
+
+    <div id="driversView" class="list-container">
+        <h2>Drivers List</h2>
+        <% if (drivers && drivers.length > 0) { %>
+            <ul class="driver-list">
+            <% drivers.forEach(driver => { %>
+                <li class="driver-item" id="driver-<%= driver._id %>">
+                    <div class="driver-info">
+                        <span class="driver-num"><%= driver.num %></span>
+                        <span class="driver-code"><%= driver.code %></span>
+                        <strong><%= driver.forename %> <%= driver.surname %></strong>
+                        <span class="driver-team">(<%= driver.team ? driver.team.name : 'N/A' %>)</span>
+                        <span class="driver-nationality"><%= driver.nationality %></span>
+                        <span class="driver-dob"><%= new Date(driver.dob).toLocaleDateString() %></span>
+                    </div>
+                    <div class="driver-actions">
+                        <button onclick="editDriver('<%= driver._id %>')">Edit</button>
+                        <button onclick="deleteDriver('<%= driver._id %>')">Delete</button>
+                    </div>
+                </li>
+            <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No drivers in database yet.</p>
+        <% } %>
+    </div>
+
+    <div id="teamsView" class="list-container" style="display:none;">
+        <h2>Teams List</h2>
+        <% if (teams && teams.length > 0) { %>
+            <ul class="team-list">
+            <% teams.forEach(team => { %>
+                <li class="team-item">
+                    <h3><%= team.name %></h3>
+                    <p>Nationality: <%= team.nationality %></p>
+                    <% const teamDrivers = drivers.filter(d => d.team && d.team._id.toString() === team._id.toString()); %>
+                    <% if (teamDrivers.length > 0) { %>
+                        <ul class="team-drivers">
+                        <% teamDrivers.forEach(driver => { %>
+                            <li>
+                                #<%= driver.num %> <%= driver.forename %> <%= driver.surname %>
+                                <button onclick="editDriver('<%= driver._id %>')">Edit</button>
+                                <button onclick="deleteDriver('<%= driver._id %>')">Delete</button>
+                            </li>
+                        <% }); %>
+                        </ul>
+                    <% } else { %>
+                        <p>No drivers in this team.</p>
+                    <% } %>
+                </li>
+            <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No teams in database yet.</p>
+        <% } %>
+    </div>
+
+    <script>
+        function toggleView() {
+            const driversView = document.getElementById('driversView');
+            const teamsView = document.getElementById('teamsView');
+            const toggleBtn = document.getElementById('toggleBtn');
+            
+            if (driversView.style.display === 'none') {
+                driversView.style.display = 'block';
+                teamsView.style.display = 'none';
+                toggleBtn.textContent = 'View by Teams';
+            } else {
+                driversView.style.display = 'none';
+                teamsView.style.display = 'block';
+                toggleBtn.textContent = 'View by Drivers';
+            }
+        }
+
+        function editDriver(id) {
+            fetch(`/driver/${id}`)
+                .then(res => res.json())
+                .then(driver => {
+                    document.getElementById('driverId').value = driver._id;
+                    document.getElementById('num').value = driver.num;
+                    document.getElementById('code').value = driver.code;
+                    document.getElementById('name').value = driver.forename;
+                    document.getElementById('lname').value = driver.surname;
+                    document.getElementById('dob').value = new Date(driver.dob).toISOString().split('T')[0];
+                    document.getElementById('url').value = driver.url;
+                    document.getElementById('nation').value = driver.nationality;
+                    document.getElementById('team').value = driver.team ? driver.team._id : '';
+                    document.getElementById('cancelBtn').style.display = 'inline';
+                    document.querySelector('input[type="submit"]').value = 'Update Driver';
+                    window.scrollTo(0, 0);
+                });
+        }
+
+        function cancelEdit() {
+            document.getElementById('driverForm').reset();
+            document.getElementById('driverId').value = '';
+            document.getElementById('cancelBtn').style.display = 'none';
+            document.querySelector('input[type="submit"]').value = 'Save Driver';
+        }
+
+        function deleteDriver(id) {
+            if (confirm('Are you sure you want to delete this driver?')) {
+                fetch(`/driver/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(() => {
+                    location.reload();
+                })
+                .catch(err => alert('Error deleting driver: ' + err.message));
+            }
+        }
+    </script>
+</body>
+
+</html>
