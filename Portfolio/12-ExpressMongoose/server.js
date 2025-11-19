@@ -10,7 +10,7 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 const mongoUrl = "mongodb://127.0.0.1:27017/f1";
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoUrl);
 
 // Definition of a schema
 const teamSchema = new mongoose.Schema({
@@ -110,36 +110,70 @@ async function loadInitialData(req, res, next) {
       }
       
       // Then load drivers from CSV
-      const results = [];
-      fs.createReadStream(__dirname + "/public/data/f1_2023.csv")
-        .pipe(csv())
-        .on("data", (data) => results.push(data))
-        .on("end", async () => {
-          for (const row of results) {
-            if (row.current_team && row.current_team !== "N/A") {
-              const team = teamMap[row.current_team];
-              const [day, month, year] = row.dob.split("/");
-              const dob = new Date(`${year}-${month}-${day}`);
-              
-              const driver = new Driver({
-                num: parseInt(row.number),
-                code: row.code,
-                forename: row.forename,
-                surname: row.surname,
-                dob: dob,
-                nationality: row.nationality,
-                url: row.url,
-                team: team,
+      await new Promise((resolve, reject) => {
+        const results = [];
+        fs.createReadStream(__dirname + "/public/data/f1_2023.csv")
+          .pipe(csv())
+          .on("data", (data) => {
+            // Handle BOM in CSV - the first column might have a BOM character
+            const number = data.number || data['﻿number'];
+            if (number && data.code && data.forename) {
+              // Normalize the data by removing BOM from keys
+              results.push({
+                number: number,
+                code: data.code,
+                forename: data.forename,
+                surname: data.surname,
+                dob: data.dob,
+                nationality: data.nationality,
+                url: data.url,
+                current_team: data.current_team
               });
-              await driver.save();
             }
-          }
-          console.log("Initial data loaded successfully!");
-          next();
-        });
-    } else {
-      next();
+          })
+          .on("end", async () => {
+            try {
+              for (const row of results) {
+                if (row.current_team && row.current_team !== "N/A") {
+                  const team = teamMap[row.current_team];
+                  if (!team) {
+                    console.log(`Team not found for: ${row.current_team}`);
+                    continue;
+                  }
+                  
+                  const [day, month, year] = row.dob.split("/");
+                  const dob = new Date(`${year}-${month}-${day}`);
+                  
+                  const driver = new Driver({
+                    num: parseInt(row.number),
+                    code: row.code,
+                    forename: row.forename,
+                    surname: row.surname,
+                    dob: dob,
+                    nationality: row.nationality,
+                    url: row.url,
+                    team: {
+                      id: team.id,
+                      name: team.name,
+                      nationality: team.nationality,
+                      url: team.url,
+                      _id: team._id
+                    },
+                  });
+                  await driver.save();
+                }
+              }
+              console.log(`Initial data loaded successfully! ${results.length} rows processed.`);
+              resolve();
+            } catch (err) {
+              console.error("Error in CSV processing:", err);
+              reject(err);
+            }
+          })
+          .on("error", reject);
+      });
     }
+    next();
   } catch (err) {
     console.error("Error loading initial data:", err);
     next();
