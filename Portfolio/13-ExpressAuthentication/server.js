@@ -6,9 +6,11 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const cookieParser = require("cookie-parser");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static("public"));
 app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
@@ -22,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const mongoUrl = process.env.MONGO_URL || "";
+const mongoUrl = process.env.MONGO_URL;
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -31,6 +33,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const userSchema = new mongoose.Schema({
   email: String,
   googleId: String,
+  secrets: [String]
 });
 userSchema.plugin(passportLocalMongoose);
 userSchema.set("strictQuery", true);
@@ -106,6 +109,7 @@ function loginUser(req, res) {
 }
 
 function logoutUser(req, res) {
+  res.clearCookie("username");
   req.logout(function(err) {
     if (err) {
       console.log(err);
@@ -128,18 +132,55 @@ app.get("/register", (req, res) => {
 
 app.get("/secrets", (req, res) => {
   if (req.isAuthenticated()) {
-    res.render("secrets", { supersecret: process.env.SESSION_SECRET });
+    User.findById(req.user.id, (err, foundUser) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (foundUser) {
+          res.render("secrets", { secrets: foundUser.secrets });
+        }
+      }
+    });
   } else {
     res.redirect("/login");
   }
 });
 
+app.post("/submit", (req, res) => {
+  const newSecret = req.body.secret;
+  User.findById(req.user.id, (err, foundUser) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (foundUser) {
+        foundUser.secrets.push(newSecret);
+        foundUser.save(() => {
+          res.redirect("/secrets");
+        });
+      }
+    }
+  });
+});
+
 app.post("/register", registerUser);
 
-app.post("/login", passport.authenticate("local", {
-  successRedirect: "/secrets",
-  failureRedirect: "/login"
-}));
+app.post("/login", (req, res) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return res.redirect("/login");
+    }
+    if (!user) {
+      return res.redirect("/login");
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return res.redirect("/login");
+      }
+      res.cookie("username", user.username, { maxAge: 3600000 });
+      return res.redirect("/secrets");
+    });
+  })(req, res);
+});
 
 app.get("/logout", logoutUser);
 
