@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mongo DB - F1 test</title>
+    <title>F1 drivers - Rooster Cross</title>
     <style>
         :root {
             --f1-red: #e10600;
@@ -69,7 +67,7 @@
             border: 1px solid var(--f1-black);
             background: #2a2a2e;
             color: var(--f1-white);
-            box-sizing: border-box; /* To include padding in width */
+            box-sizing: border-box; 
         }
         
         .form-grid {
@@ -234,7 +232,8 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+      // esto es porque a veces los elementos no existian cuando este codigo corria y no los encontraba js
+      document.addEventListener('DOMContentLoaded', () => {
             const driverForm = document.getElementById('driverForm');
             const driverIdField = document.getElementById('driverId');
             const numField = document.getElementById('num');
@@ -250,7 +249,6 @@
             const toggleViewButton = document.getElementById('toggleView');
             let isDriverView = true;
 
-            // Handle form submission for creating/updating
             driverForm.addEventListener('submit', async (event) => {
                 event.preventDefault();
                 const formData = new FormData(driverForm);
@@ -273,7 +271,6 @@
                 }
             });
 
-            // Handle edit button click
             driverList.addEventListener('click', async (event) => {
                 if (event.target.classList.contains('editDriver')) {
                     const driverId = event.target.dataset.id;
@@ -302,21 +299,19 @@
                         } else {
                             alert('Error deleting driver');
                         }
-                    }
+                  }
                 }
             });
 
-            // Toggle view between drivers and teams
             toggleViewButton.addEventListener('click', () => {
                 isDriverView = !isDriverView;
                 if (isDriverView) {
-                    driverList.style.display = 'grid'; // Changed from 'block'
+                    driverList.style.display = 'grid'; 
                     teamList.style.display = 'none';
                     toggleViewButton.textContent = 'Show Teams';
                 } else {
                     driverList.style.display = 'none';
-                    teamList.style.display = 'block'; // Or 'grid' if you style it
-                    toggleViewButton.textContent = 'Show Drivers';
+                    teamList.style.display = 'block';                     toggleViewButton.textContent = 'Show Drivers';
                 }
             });
         });

@@ -13,3 +13,9 @@ Using the provided code, complete the following tasks
   - A better approach would be to now turn all the editable values to input fields on the spot. (This may be useful so you can later implement that with React)
 - Add a toggle button that would show the list by drivers or by teams.
 - Use a **middleware** method to deal with the loading of the data when landing on the root path.
+
+
+## decisions i took
+- i used docker to make mongo avaulable without the need of the atlas service
+- the change behaviour is quirky but it is meant for not makeing duplicate code for making a new driver and changing an existent one
+- used ai to generate

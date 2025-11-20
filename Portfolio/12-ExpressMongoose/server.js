@@ -2,8 +2,14 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const fs = require("fs");
+
+
+// lo agregue porque csv puede tener varios separadores como ;,: entonces no quiero pelearme con eso y ademas implementarlo no es mi tema, esto es un crud
 const csv = require("csv-parser");
 require('dotenv').config();
+
+
+// crud app for f1 drivers
 
 const port = process.env.PORT || 3000;
 const mongoUrl = process.env.MONGO_URI;
@@ -19,7 +25,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-// Definition of a schema
 const teamSchema = new mongoose.Schema({
   id: Number,
   name: String,
@@ -43,6 +48,9 @@ driverSchema.set("strictQuery", true);
 const Team = mongoose.model("Team", teamSchema);
 const Driver = mongoose.model("Driver", driverSchema);
 
+
+
+// this could sent to the client to be a select but 197 elements are not good to hardcode
 let countries = [
   { code: "ENG", label: "England" },
   { code: "SPA", label: "Spain" },
@@ -76,7 +84,6 @@ let countries = [
   { code: "Danish", label: "Danish" },
 ];
 
-// Team mapping for CSV data
 const teamMapping = {
   "Mercedes": { name: "Mercedes", nationality: "German", url: "http://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One" },
   "Aston Martin": { name: "Aston Martin", nationality: "British", url: "http://en.wikipedia.org/wiki/Aston_Martin_in_Formula_One" },
@@ -90,15 +97,11 @@ const teamMapping = {
   "McLaren": { name: "McLaren", nationality: "British", url: "http://en.wikipedia.org/wiki/McLaren" },
 };
 
-// Middleware to load CSV data into database on first run
 async function loadInitialData(req, res, next) {
   try {
     const driverCount = await Driver.countDocuments();
     
     if (driverCount === 0) {
-      console.log("Loading initial data from CSV...");
-      
-      // First, create teams
       const teamMap = {};
       for (const [key, value] of Object.entries(teamMapping)) {
         const team = await Team.findOne({ name: value.name });
@@ -116,16 +119,13 @@ async function loadInitialData(req, res, next) {
         }
       }
       
-      // Then load drivers from CSV
       await new Promise((resolve, reject) => {
         const results = [];
         fs.createReadStream(__dirname + "/public/data/f1_2023.csv")
           .pipe(csv())
           .on("data", (data) => {
-            // Handle BOM in CSV - the first column might have a BOM character
-            const number = data.number || data['﻿number'];
+            const number = data.number || data['number'];
             if (number && data.code && data.forename) {
-              // Normalize the data by removing BOM from keys
               results.push({
                 number: number,
                 code: data.code,
@@ -144,7 +144,7 @@ async function loadInitialData(req, res, next) {
                 if (row.current_team && row.current_team !== "N/A") {
                   const team = teamMap[row.current_team];
                   if (!team) {
-                    console.log(`Team not found for: ${row.current_team}`);
+                    console.error(`Team ${row.current_team} not found`);
                     continue;
                   }
                   
@@ -159,7 +159,7 @@ async function loadInitialData(req, res, next) {
                     dob: dob,
                     nationality: row.nationality,
                     url: row.url,
-                    team: team._id, // Reference the team by its ObjectId
+                    team: team._id,
                   });
                   await driver.save();
                 }
@@ -191,7 +191,6 @@ app.get("/", loadInitialData, async (req, res) => {
   }
 });
 
-// Get a specific driver
 app.get("/driver/:id", async (req, res) => {
   try {
     const driver = await Driver.findById(req.params.id).populate('team');
@@ -202,6 +201,8 @@ app.get("/driver/:id", async (req, res) => {
 });
 
 // Create or update a driver
+// made throut the same form, if the primary key that now it is the driverid is already in the db,
+// it just overrides the contents  of that driver
 app.post("/driver", async (req, res) => {
   try {
     const { driverId, num, code, name, lname, dob, url, nation, team } = req.body;
@@ -241,7 +242,6 @@ app.post("/driver", async (req, res) => {
   }
 });
 
-// Delete a driver
 app.delete("/driver/:id", async (req, res) => {
   try {
     await Driver.findByIdAndDelete(req.params.id);
