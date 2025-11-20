@@ -10,6 +10,9 @@ body {
 h2 {
     color: red;
 }
+a {
+  color:white !important;
+}
 
 form input,
 select {
@@ -33,7 +36,7 @@ input[type=text]:focus {
 }
 
 .header .overlay .title {
-    font-size: calc(30px + (70 - 30) * ((100vw - 320px) / (1200 - 320)));
+    font-size: 40px;
     font-weight: bold;
     text-align: center;
     color: whitesmoke;

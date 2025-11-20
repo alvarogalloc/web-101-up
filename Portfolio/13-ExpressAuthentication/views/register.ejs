@@ -1,0 +1,26 @@
+<%- include('header.partial.ejs') %>
+<main class="form-signin text-center">
+  <div class="card bg-dark text-white shadow-lg p-4">
+    <div class="card-body">
+      <h1 class="h3 mb-4 fw-normal card-title">Register</h1>
+      <form action="/register" method="POST">
+        <div class="form-floating mb-3">
+          <input type="text" name="username" class="form-control" id="floatingInputUsername" placeholder="Username" required>
+          <label for="floatingInputUsername">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" name="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" required>
+          <label for="floatingInputEmail">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+          <label for="floatingPassword">Password</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 py-2">Register</button>
+      </form>
+      <hr class="my-4">
+      <a href="/login" class="btn btn-secondary w-100 py-2">Login</a>
+    </div>
+  </div>
+</main>
+<%- include('footer.partial.ejs') %>

@@ -1,0 +1,26 @@
+<%- include('header.partial.ejs') %>
+<main class="form-signin text-center">
+  <div class="card bg-dark text-white shadow-lg p-4">
+    <div class="card-body">
+      <h1 class="h3 mb-4 fw-normal card-title">Please sign in</h1>
+      <form action="/login" method="POST">
+        <div class="form-floating mb-3">
+          <input type="text" name="username" class="form-control" id="userfield" placeholder="Username" required>
+          <label for="userfield">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" name="password" class="form-control" id="passfield" placeholder="Password" required>
+          <label for="passfield">Password</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 py-2">Sign in</button>
+      </form>
+      <hr class="my-4">
+      <a href="/auth/google" class="btn w-100 py-2 mb-3">
+        <img src="/images/svggoogle.svg" alt="Google logo" class="me-2" style="height: 24px;">
+        Sign in with Google
+      </a>
+      <a href="/register" class="btn btn-secondary w-100 py-2">Register</a>
+    </div>
+  </div>
+</main>
+<%- include('footer.partial.ejs') %>
