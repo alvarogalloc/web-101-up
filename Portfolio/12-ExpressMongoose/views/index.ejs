@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo DB - F1 test</title>
+    <style>
+        :root {
+            --f1-red: #e10600;
+            --f1-black: #15151e;
+            --f1-white: #ffffff;
+            --f1-grey: #f0f0f0;
+            --f1-dark-grey: #383838;
+        }
+
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: var(--f1-black);
+            color: var(--f1-white);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        header img {
+            max-width: 100px;
+        }
+
+        h1 {
+            font-weight: 700;
+            color: var(--f1-red);
+            text-transform: uppercase;
+        }
+        
+        h2 {
+            border-bottom: 2px solid var(--f1-red);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: var(--f1-dark-grey);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--f1-black);
+            background: #2a2a2e;
+            color: var(--f1-white);
+            box-sizing: border-box; /* To include padding in width */
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        #driverList {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0;
+        }
+        
+        #driverList .driver-card {
+            background: var(--f1-dark-grey);
+            border-left: 5px solid var(--f1-red);
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+        
+        #driverList .driver-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .driver-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--f1-red);
+        }
+
+        .driver-team {
+            font-style: italic;
+            color: #b0b0b0;
+            margin: 5px 0;
+        }
+
+        .driver-details {
+            font-size: 0.9em;
+            color: #d0d0d0;
+        }
+
+        .action-buttons button {
+            background-color: var(--f1-red);
+            color: var(--f1-white);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+        
+        .action-buttons .deleteDriver {
+            background-color: #555;
+        }
+        
+        .action-buttons button:hover {
+            opacity: 0.8;
+        }
+        
+        #toggleView {
+            background: var(--f1-red);
+            color: var(--f1-white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="/images/StarLion.png" alt="lion brewery" />
+            <h1>F1 Database</h1>
+        </header>
+
+        <section class="mb-5">
+            <form id="driverForm" action="/driver" method="POST">
+                <h2>Driver Information</h2>
+                <input type="hidden" name="driverId" id="driverId">
+                <div class="form-grid">
+                    <div>
+                        <label for="num">Number</label>
+                        <input type="text" name="num" id="num" placeholder="e.g., 44" required />
+                    </div>
+                     <div>
+                        <label for="code">Code</label>
+                        <input type="text" name="code" id="code" placeholder="e.g., HAM" required />
+                    </div>
+                     <div>
+                        <label for="name">First Name</label>
+                        <input type="text" name="name" id="name" placeholder="e.g., Lewis" required />
+                    </div>
+                     <div>
+                        <label for="lname">Last Name</label>
+                        <input type="text" name="lname" id="lname" placeholder="e.g., Hamilton" required />
+                    </div>
+                     <div>
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" name="dob" id="dob" required />
+                    </div>
+                     <div>
+                        <label for="nation">Nationality</label>
+                        <select name="nation" id="nation">
+                            <% countries.forEach(country => { %>
+                                <option value="<%= country.label %>"><%= country.label %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                     <div>
+                        <label for="team">Team</label>
+                        <select name="team" id="team">
+                            <% teams.forEach(team => { %>
+                                <option value="<%= team._id %>"><%= team.name %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="url">Biography URL</label>
+                        <input type="url" name="url" id="url" placeholder="http://example.com" />
+                    </div>
+                </div>
+                 <p> <button type="submit">Save Driver</button> </p>
+            </form>
+        </section>
+
+        <section>
+            <h2>Driver Roster</h2>
+            <button id="toggleView">Show Teams</button>
+            <div id="driverList">
+                <% drivers.forEach(driver => { %>
+                    <div class="driver-card" data-id="<%= driver._id %>">
+                        <div class="driver-name"><%= driver.num %>. <%= driver.forename %> <%= driver.surname %> (<%= driver.code %>)</div>
+                        <div class="driver-team">Team: <%= driver.team ? driver.team.name : 'N/A' %></div>
+                        <div class="driver-details">
+                            <p>Nationality: <%= driver.nationality %></p>
+                            <p>DOB: <%= new Date(driver.dob).toLocaleDateString() %></p>
+                            <% if (driver.url) { %><p><a href="<%= driver.url %>" target="_blank">Biography</a></p><% } %>
+                        </div>
+                         <div class="action-buttons">
+                            <button class="editDriver" data-id="<%= driver._id %>">Edit</button>
+                            <button class="deleteDriver" data-id="<%= driver._id %>">Delete</button>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+
+            <ul id="teamList" style="display: none;">
+                <% teams.forEach(team => { %>
+                    <li data-id="<%= team._id %>">
+                        <strong><%= team.name %></strong> (<%= team.nationality %>) - <a href="<%= team.url %>" target="_blank">Info</a>
+                    </li>
+                <% }); %>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const driverForm = document.getElementById('driverForm');
+            const driverIdField = document.getElementById('driverId');
+            const numField = document.getElementById('num');
+            const codeField = document.getElementById('code');
+            const nameField = document.getElementById('name');
+            const lnameField = document.getElementById('lname');
+            const dobField = document.getElementById('dob');
+            const urlField = document.getElementById('url');
+            const nationField = document.getElementById('nation');
+            const teamField = document.getElementById('team');
+            const driverList = document.getElementById('driverList');
+            const teamList = document.getElementById('teamList');
+            const toggleViewButton = document.getElementById('toggleView');
+            let isDriverView = true;
+
+            // Handle form submission for creating/updating
+            driverForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(driverForm);
+                const data = Object.fromEntries(formData.entries());
+
+                const method = driverIdField.value ? 'PUT' : 'POST'; 
+
+                const response = await fetch('/driver', {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Error saving driver');
+                }
+            });
+
+            // Handle edit button click
+            driverList.addEventListener('click', async (event) => {
+                if (event.target.classList.contains('editDriver')) {
+                    const driverId = event.target.dataset.id;
+                    const response = await fetch(`/driver/${driverId}`);
+                    const driver = await response.json();
+
+                    driverIdField.value = driver._id;
+                    numField.value = driver.num;
+                    codeField.value = driver.code;
+                    nameField.value = driver.forename;
+                    lnameField.value = driver.surname;
+                    dobField.value = driver.dob ? new Date(driver.dob).toISOString().split('T')[0] : '';
+                    urlField.value = driver.url;
+                    nationField.value = driver.nationality;
+                    if (driver.team) {
+                        teamField.value = driver.team._id;
+                    }
+                } else if (event.target.classList.contains('deleteDriver')) {
+                    const driverId = event.target.dataset.id;
+                    if (confirm('Are you sure you want to delete this driver?')) {
+                        const response = await fetch(`/driver/${driverId}`, {
+                            method: 'DELETE'
+                        });
+                        if (response.ok) {
+                            window.location.reload();
+                        } else {
+                            alert('Error deleting driver');
+                        }
+                    }
+                }
+            });
+
+            // Toggle view between drivers and teams
+            toggleViewButton.addEventListener('click', () => {
+                isDriverView = !isDriverView;
+                if (isDriverView) {
+                    driverList.style.display = 'grid'; // Changed from 'block'
+                    teamList.style.display = 'none';
+                    toggleViewButton.textContent = 'Show Teams';
+                } else {
+                    driverList.style.display = 'none';
+                    teamList.style.display = 'block'; // Or 'grid' if you style it
+                    toggleViewButton.textContent = 'Show Drivers';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
