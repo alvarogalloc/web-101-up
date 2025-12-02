@@ -1,24 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .container {
-  width: 70%;
+  width: 90%;
   margin: auto;
   text-align: center;
+}
+
+body {
+  background-color: #CADC9F;
+  color: #0F380F;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .dice {
   text-align: center;
   display: inline-block;
-
+  margin: 20px;
+  padding: 20px;
+  border: 4px solid #0F380F;
+  border-radius: 10px;
+  background-color: #8BAC0F;
 }
 
 h1 {
   margin: 30px;
-  font-size: 8rem;
+  font-size: 4rem;
+  color: #0F380F;
 }
 
 p {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  color: #0F380F;
 }
 
 img {
-  width: 80%;
+  width: 150px;
+  height: 150px;
+}
+
+.roll-button {
+  background-color: #0F380F;
+  border: 4px solid #0F380F;
+  color: #CADC9F;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px 2px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  border-radius: 8px;
+  box-shadow: 0 4px #306230;
+}
+
+.roll-button:active {
+  box-shadow: 0 2px #306230;
+  transform: translateY(2px);
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 5rem;    /* Footer height */
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;            /* Footer height */
+  text-align: center;
+}
+
+
+#footer a {
+  color: #0F380F;
 }
