@@ -3,31 +3,37 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Simon</title>
+  <title>Simon: The Noir P.I.</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <h1 id="level-title">Press A Key to Start</h1>
-  <div class="container">
-    <div lass="row">
+  <h1 id="level-title">Press any key to start the investigation</h1>
+  <p>- You are Looker, a private investigator. As you solve cases, you get closer to catching Cyrus, the leader of the notorious Team Galaxy.</p>
+  <div class="character-container">
+    <div id="looker" class="character"></div>
+    <div id="cyrus" class="character"></div>
+  </div>
+  <div class="board">
+    <div class="row">
 
-      <div type="button" id="green" class="btn green">
+      <div type="button" id="safehouse" class="btn safehouse">
 
       </div>
 
-      <div type="button" id="red" class="btn red">
+      <div type="button" id="informant" class="btn informant">
 
       </div>
     </div>
 
     <div class="row">
 
-      <div type="button" id="yellow" class="btn yellow">
+      <div type="button" id="getaway" class="btn getaway">
 
       </div>
-      <div type="button" id="blue" class="btn blue">
+      <div type="button" id="wiretap" class="btn wiretap">
 
       </div>
 
@@ -35,7 +41,8 @@
 
   </div>
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="game.js" charset="utf-8"></script>
 </body>
 
 </html>
