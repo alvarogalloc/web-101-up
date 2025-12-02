@@ -3,40 +3,46 @@ body {
   background-color: #283149;
 }
 
-h1 {
-  font-size: 5rem;
+h1, legend {
   color: #DBEDF3;
   font-family: "Arvo", cursive;
   text-shadow: 3px 0 #DA0463;
+}
+h1 {
+    font-size: 5rem;
+
+}
+legend {
+  font-size: 1rem;
 
 }
 
 .w {
-
+  background-image: url('images/tom1.png');
 }
 
 .a {
-
+  background-image: url('images/tom2.png');
 }
 
 .s {
-
+  background-image: url('images/tom3.png');
 }
 
 .d {
-
+  background-image: url('images/tom4.png');
 }
 
 .j {
-
+  background-image: url('images/snare.png');
 }
 
 .k {
-
+  background-image: url('images/crash.png');
 }
 
 .l {
-
+  background-image: url('images/kick.png');
 }
 
 .set {
