@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DB_URL: mongodb://root:example@db:27017/todolistDB?authSource=admin
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: pnpm start
+
+  db:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
